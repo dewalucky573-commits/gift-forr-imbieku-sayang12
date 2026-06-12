@@ -1,469 +1,215 @@
-<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Untuk Imbi ❤️</title><!-- Tailwind --><script src="https://cdn.tailwindcss.com"></script><!-- Font --><link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body><!-- ===================================== --><!-- AUDIO --><!-- ===================================== --><audio id="bgMusic" loop>
-    <source src="assets/bgmusic.mp3" type="audio/mpeg">
-</audio><button id="muteBtn">
-    🔊
-</button><!-- ===================================== --><!-- FLOWER CONTAINER --><!-- ===================================== --><div id="flowerRain"></div><!-- ===================================== --><!-- LOADING SCREEN --><!-- ===================================== --><section id="loadingScene" class="scene active"><div class="loading-box">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spesial Buat Kamu ❤️</title>
+    <style>
+        body {
+            background-color: #ffe6e6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 550px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 25px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+        h1 { color: #ff4d6d; font-size: 24px; margin-bottom: 20px; }
+        
+        /* Musik MP3 Bawaan */
+        .audio-container {
+            margin-bottom: 25px;
+            background: #fff0f2;
+            padding: 10px;
+            border-radius: 12px;
+        }
+        audio {
+            width: 100%;
+        }
 
-    <h1 class="loading-title">
-        Menyiapkan Kenangan
-    </h1>
+        /* Gaya Tombol Buka-Tutup Foto */
+        .btn-foto {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+            transition: 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btn-foto:hover { background-color: #ff758f; }
 
-    <h2 class="loading-subtitle">
-        Dewa ❤️ Imbi
-    </h2>
+        /* Konten Foto yang Tersembunyi */
+        .konten-foto {
+            display: none;
+            background: #fff0f2;
+            padding: 15px;
+            border-radius: 0 0 15px 15px;
+            margin-top: -15px;
+            margin-bottom: 20px;
+            box-shadow: inset 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .konten-foto img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            height: auto;
+        }
+        .caption {
+            font-size: 15px;
+            color: #4a4a4a;
+            margin-top: 10px;
+            text-align: center;
+            line-height: 1.4;
+        }
 
-    <div class="loading-bar">
+        /* Sistem Password & Surat */
+        .section-surat {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px dashed #ffb3c1;
+        }
+        .input-pw {
+            padding: 10px;
+            width: 60%;
+            border: 2px solid #ffb3c1;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: center;
+            outline: none;
+        }
+        .btn-pw {
+            padding: 10px 15px;
+            background-color: #4cef50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .surat-rahasia {
+            display: none;
+            margin-top: 20px;
+            background-color: #fff0f2;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #ff4d6d;
+            text-align: left;
+            font-size: 16px;
+            color: #4a4a4a;
+            line-height: 1.6;
+        }
 
-        <div id="loadingProgress"></div>
+        .hati { font-size: 40px; animation: heartbeat 1.2s infinite; display: inline-block; }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
 
-    </div>
-
-    <p id="loadingText">
-        0%
-    </p>
-
-</div>
-
-</section><!-- ===================================== --><!-- GIFT SCENE --><!-- ===================================== --><section id="giftScene" class="scene hidden"><div class="gift-wrapper">
-
-    <h1 class="gift-title">
-        Ada sesuatu untuk Imbi ❤️
-    </h1>
-
-    <p class="gift-subtitle">
-        Klik kadonya ya sayang
-    </p>
-
-    <div id="giftBox" class="gift-box">
-
-        🎁
-
-    </div>
-
-</div>
-
-</section><!-- ===================================== --><!-- PIN SCENE --><!-- ===================================== --><section id="pinScene" class="scene hidden"><div class="pin-container">
-
-    <h2 class="pin-title">
-        Hayo kodenya apa ya 🤭
-    </h2>
-
-    <input
-        id="pinInput"
-        type="password"
-        maxlength="6"
-        placeholder="______"
-        class="pin-input"
-    >
-
-    <button
-        id="checkPinBtn"
-        class="pink-btn">
-
-        Masuk
-
-    </button>
-
-    <p id="pinMessage"></p>
-
-</div>
-
-</section><!-- ===================================== --><!-- ORBIT SCENE --><!-- ===================================== --><section id="orbitScene" class="scene hidden"><div class="orbit-wrapper">
-
-    <p class="memory-label">
-        MEMORI DnA
-    </p>
-
-    <h1 class="memory-title">
-        Kenangan Dewa n Imbi
-    </h1>
-
-    <p class="memory-subtitle">
-        Pencet setiap kenangan nya satu persatu ya sayang ❤️
-    </p>
-
-    <div id="progressBox">
-
-        Kenangan Terbuka
-
-        <span id="progressText">
-            0 / 8
-        </span>
-
-    </div>
-
-    <p id="daysCounter">
-        Menghitung hari...
-    </p>
-
-    <!-- HEART CORE -->
-
-    <div id="heartCore">
-
-        <div class="heart-glow"></div>
-
-        <div class="heart-content">
-
-            <h2>❤️</h2>
-
-            <p>
-                Inti Hati
-            </p>
-
+    <div class="container">
+        <div class="hati">❤️</div>
+        <h1>Our Secret Place</h1>
+        
+        <!-- BAGIAN 1: PEMUTAR AUDIO MP3 -->
+        <div class="audio-container">
+            <p style="font-size: 12px; color: #ff4d6d; margin: 0 0 5px 0; font-weight: bold;">🎵 Putar Musiknya di Sini 🎵</p>
+            <audio controls autoplay loop>
+                <source src="bgmusic.mp3" type="audio/mpeg">
+                Browser kamu tidak mendukung pemutar audio ini.
+            </audio>
         </div>
 
+        <!-- BAGIAN 2: GALERI FOTO BUKA TUTUP (4 FOTO) -->
+        <div class="galeri">
+            <!-- FOTO 1 -->
+            <button class="btn-foto" onclick="toggleFoto('foto-1')">📂 Foto Pertama <span>▼</span></button>
+            <div id="foto-1" class="konten-foto">
+                <img src="foto1.jpg" alt="Momen 1">
+                <div class="caption">aku suka banget deh kalo kamu meluk atau ngelakuin sesuatu ke bucket yang aku kasih ke kamu,wkwkwk aku ngerasa kaya aku yang dipeluk anjay</div>
+            </div>
+
+            <!-- FOTO 2 -->
+            <button class="btn-foto" onclick="toggleFoto('foto-2')">📂 Foto Kedua <span>▼</span></button>
+            <div id="foto-2" class="konten-foto">
+                <img src="foto2.jpg" alt="Momen 2">
+                <div class="caption">kaya udah lama aja yaa?perasaan baru kemaren yaa wkwkwk makasih yaa Udha ngasih aku bucket,aku bakal ngehargain dan simpen bunga pemberin kamu sayang💗🥰</div>
+            </div>
+
+            <!-- FOTO 3 -->
+            <button class="btn-foto" onclick="toggleFoto('foto-3')">📂 Foto Ketiga <span>▼</span></button>
+            <div id="foto-3" class="konten-foto">
+                <img src="foto3.jpg" alt="Momen 3">
+                <div class="caption">inii Poto paling lucukk kamuu aku salting terus liatnyaa</div>
+            </div>
+
+            <!-- FOTO 4 -->
+            <button class="btn-foto" onclick="toggleFoto('foto-4')">📂 Foto Keempat <span>▼</span></button>
+            <div id="foto-4" class="konten-foto">
+                <img src="foto4.jpg" alt="Momen 4">
+                <div class="caption">kamu masih inget kann jadian kita??aku kangen deh pas aku nembak kamu lucu ajaa gitu aku ngingetnya apalagi kamu sampe nerima aku aku ganyangka kamu bisa Nerima aku sengg hwhe</div>
+            </div>
+        </div>
+
+        <!-- BAGIAN 3: LOCK PASSWORD SURAT -->
+        <div class="section-surat">
+            <h3>🔒 Surat Rahasia Buat Kamu</h3>
+            <p style="font-size: 14px; color: #777;">Masukkan password untuk membuka surat cinta</p>
+            <div id="area-input">
+                <input type="text" id="passwordInput" class="input-pw" placeholder="Ketik password...">
+                <button class="btn-pw" onclick="cekPassword()">Buka</button>
+            </div>
+
+            <!-- Isi Surat yang Terkunci -->
+            <div id="kotakSurat" class="surat-rahasia">
+                <p>happy graduation juga ya imbi sayang💗💗maap yak aku ngucapinnya sekarang tadi juga luntur ucapannya 😢😢aku engga nyangka kamu effort banget kalo sama aku seng Sukak dehh🤗🤗🤭💗😻🥰kamu juga ya semoga nanti disono temen temen aku asik asik kalau misalnya kamu di jakarta sehat sehat ya seng kalo di 14 juga sehat sehat PB juga sehat sehat pokonya sehat sehat deh wkwkwkwk jangan lupain aku ya seng jaga pola makan kamu jangan makan mie Mulu makan yang sehat sehat Ama jangan lupa beribadah seng dimanapun kita berada,aku juga pasti bakal kangen sama kamu seng setiap hari malah aku pikiran kamu mulu💗🤗, intinya makasih ya seng plis sama aku terus kecintaan nih wkwkwkwk😜</p>
+            </div>
+        </div>
     </div>
 
-    <!-- ORBIT 1 -->
-
-    <div class="orbit orbit1">
-
-        <button
-            class="memory-item"
-            data-target="photo1">
-
-            📸 Foto 1
-
-        </button>
-
-    </div>
-
-    <!-- ORBIT 2 -->
-
-    <div class="orbit orbit2">
-
-        <button
-            class="memory-item"
-            data-target="photo2">
-
-            📸 Foto 2
-
-        </button>
-
-    </div>
-
-    <!-- ORBIT 3 -->
-
-    <div class="orbit orbit3">
-
-        <button
-            class="memory-item"
-            data-target="photo3">
-
-            📸 Foto 3
-
-        </button>
-
-    </div>
-
-    <!-- ORBIT 4 -->
-
-    <div class="orbit orbit4">
-
-        <button
-            class="memory-item"
-            data-target="photo4">
-
-            📸 Foto 4
-
-        </button>
-
-    </div>
-
-    <!-- ORBIT 5 -->
-
-    <div class="orbit orbit5">
-
-        <button
-            class="memory-item"
-            data-target="photo5">
-
-            📸 Foto 5
-
-        </button>
-
-    </div>
-<!-- ORBIT 6 -->    <div class="orbit orbit6">
-
-        <button
-            class="memory-item"
-            data-target="letter">
-
-            💌 Surat
-
-        </button>
-
-    </div>
-
-    <!-- ORBIT 7 -->
-
-    <div class="orbit orbit7">
-
-        <button
-            class="memory-item"
-            data-target="song">
-
-            🎵 Lagu Kita
-
-        </button>
-
-    </div>
-
-    <!-- ORBIT 8 -->
-
-    <div class="orbit orbit8">
-
-        <button
-            class="memory-item"
-            data-target="favorite">
-
-            🌸 Favorit
-
-        </button>
-
-    </div>
-
-</div>
-
-</section><!-- ===================================== --><!-- MODAL --><!-- ===================================== --><div id="modal" class="hidden"><div class="modal-content">
-
-    <button id="closeModal" class="close-btn">
-        ✖
-    </button>
-
-    <div id="modalBody"></div>
-
-</div>
-
-</div><!-- ===================================== --><!-- BOUQUET SCENE --><!-- ===================================== --><section id="bouquetScene" class="scene hidden"><div class="bouquet-container">
-
-    <div class="bouquet-flowers">
-
-        🌷 🌸 🌹 🌸 🌷
-
-    </div>
-
-    <h1 class="bouquet-title">
-
-        Thank You For Staying
-
-    </h1>
-
-    <p class="bouquet-subtitle">
-
-        Terimakasih karena tetap ada sayang ❤️
-
-    </p>
-
-    <button
-        id="loveBtn"
-        class="pink-btn">
-
-        Aku Sayang Kamu ❤️
-
-    </button>
-
-    <h2
-        id="foreverText"
-        class="hidden">
-
-        Forever Us ❤️
-
-    </h2>
-
-</div>
-
-</section><!-- ===================================== --><!-- ENDING SCENE --><!-- ===================================== --><section
-    id="endingScene"
-    class="scene hidden"><div class="ending-wrapper">
-
-    <h1>
-        22 • 05 • 26
-    </h1>
-
-    <h2>
-        Hari dimana semuanya dimulai
-    </h2>
-
-    <h1>
-        Dewa ❤️ Imbi
-    </h1>
-
-    <h2>
-        Forever Us
-    </h2>
-
-</div>
-
-</section><!-- ===================================== --><!-- MEMORY TEMPLATES --><!-- ===================================== --><div id="memoryTemplates" class="hidden"><!-- FOTO 1 -->
-
-<template id="photo1">
-
-    <img
-        src="assets/foto1.jpg"
-        class="memory-photo">
-
-    <p>
-
-        Kalo kamu meluk atau ngelakuin sesuatu ke bunga
-        yang aku kasih aku ngerasa kaya aku yang dipeluk
-        deh wkwkwkwk.
-
-        Bunga kamu wangii bangett makasih yaa
-        udah ngasih aku segala hwhe.
-
-        Kamu effort bangett dehh aku sukakkk ❤️
-
-    </p>
-
-</template>
-
-<!-- FOTO 2 -->
-
-<template id="photo2">
-
-    <img
-        src="assets/foto2.jpg"
-        class="memory-photo">
-
-    <p>
-
-        Liat gaa yang kemarin kita fotbar?
-
-        Pertama kali loh itu kita wkwkwkwk.
-
-        Kenapa aku nembak nya pas akhir yaa wkwkwk.
-
-        Kangenn dehh ❤️
-
-    </p>
-
-</template>
-
-<!-- FOTO 3 -->
-
-<template id="photo3">
-
-    <img
-        src="assets/foto3.jpg"
-        class="memory-photo">
-
-    <p>
-
-        Ini foto kamu yang paling LUCUKKK
-        GEMESHH BANGETT.
-
-        Aku salting pas kamu kirim ke akuu.
-
-        Cantiknya full keliatann ❤️
-
-    </p>
-
-</template>
-
-<!-- FOTO 4 -->
-
-<template id="photo4">
-
-    <img
-        src="assets/foto4.jpg"
-        class="memory-photo">
-
-    <p>
-
-        Inget gaa kejadian aku nembak kamu?
-
-        Lucu deh kalo diinget.
-
-        Makasihh yakkk.
-
-        Semoga kita sama sama terus ❤️
-
-    </p>
-
-</template>
-
-<!-- FOTO 5 -->
-
-<template id="photo5">
-
-    <img
-        src="assets/foto5.jpg"
-        class="memory-photo">
-
-    <p>
-
-        Liatt seng anak anak kita nungguin lohh.
-
-        Udah punya 5 anak ajaa yaa 🤣❤️
-
-    </p>
-
-</template>
-
-<!-- SURAT -->
-
-<template id="letter">
-
-    <h2>
-        💌 Untuk Imbi Sayang
-    </h2>
-
-    <p>
-
-        Halo sayang.
-
-        Kamu jangan ngambek ya sama aku?
-
-        Wkwkwkwk capek tauu kalo kamu ngambek.
-
-        Ngambek nya jangan lama lama ya.
-
-        Maapin aku ya kadang kadang aku bikin
-        kamu cemburu dan ngambek mulu.
-
-        Aku pasti bakal kangen banget sama kamu.
-
-        Kamu juga disana sehat sehat yaa.
-
-        Jangan makan mie, seblak, ceker muluu.
-
-        Kalo sakit aku susah jenguknyaa wkwkwkwk.
-
-        See u yaa seng ❤️
-
-    </p>
-
-</template>
-
-<!-- LAGU -->
-
-<template id="song">
-
-    <h2>
-        🎵 Akad - Payung Teduh
-    </h2>
-
-    <p>
-
-        Ini lagu kebangsaan kitaa ya seng ❤️
-
-        Pas aku bawain lagu ini pasti
-        keinget kamu muluu.
-
-    </p>
-
-    <a
-        href="https://open.spotify.com/"
-        target="_blank"
-        class="spotify-btn">
-
-        Buka Spotify
-
-    </a>
-
-</template>
-
-</div><script src="script.js"></script></body>
+    <!-- JAVASCRIPT UNTUK FITUR INTERAKTIF -->
+    <script>
+        // Fungsi Buka Tutup Foto
+        function toggleFoto(id) {
+            var konten = document.getElementById(id);
+            if (konten.style.display === "block") {
+                konten.style.display = "none";
+            } else {
+                konten.style.display = "block";
+            }
+        }
+
+        // Fungsi Cek Password Surat
+        function cekPassword() {
+            var pwBener = "2205"; 
+            var pwUser = document.getElementById("passwordInput").value.trim();
+            
+            if (pwUser === pwBener) {
+                document.getElementById("kotakSurat").style.display = "block";
+                document.getElementById("area-input").style.display = "none";
+                alert("Password benar! Selamat membaca ya sayang ❤️");
+            } else {
+                alert("Ups! Password-nya salah 🤭\n\nPetunjuk: Tanggal jadian kita!");
+            }
+        }
+    </script>
+
+</body>
 </html>
